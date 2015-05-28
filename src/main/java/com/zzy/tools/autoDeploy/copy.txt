@@ -1,0 +1,2 @@
+/iftjh/admin/manage/account/payToVenderDetail.jsp
+/iftjh/src/web/action/EStoreAction.java

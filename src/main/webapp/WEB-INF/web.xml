@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+	<mime-mapping>
+		<extension>properties</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
+
+  <!-- ===================struts2 start====================== -->
+  <filter>
+  	<filter-name>ActionContextCleanUp</filter-name>
+  	<filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>ActionContextCleanUp</filter-name>
+  	<url-pattern>*.do</url-pattern><!-- /*.do -->
+  </filter-mapping>
+  
+  <filter>
+  	<filter-name>StrutsPrepareAndExecuteFilter</filter-name>
+  	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>StrutsPrepareAndExecuteFilter</filter-name>
+  	<url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <!-- ===================struts2 end====================== -->
+  
+  <!-- ===================filter start====================== -->
+<!--   <filter>
+  	<description>to control resource file cache or not</description>
+  	<filter-name>cache</filter-name>
+  	<filter-class>common.filter.CacheFilter</filter-class>
+  </filter>
+  <filter>
+  	<description>print application's basic information</description>
+  	<filter-name>application</filter-name>
+  	<filter-class>common.filter.ApplicationFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>application</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>cache</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping> -->
+
+  <!-- ===================filter end====================== -->
+  
+  <!-- ===================listener start====================== -->
+  <listener>
+  	<description>request listener</description>
+  	<listener-class>common.listener.ServletRequestListenerImpl</listener-class>
+  </listener>
+  <listener>
+  	<description>session listener</description>
+  	<listener-class>common.listener.HttpSessionListenerImpl</listener-class>
+  </listener>
+	<listener>
+		<listener-class>listener.JobLoadListener</listener-class>
+	</listener>
+  <!-- ===================listener end====================== -->
+  
+  <servlet>
+  	<servlet-name>testServlet</servlet-name>
+  	<servlet-class>test.TestServlet</servlet-class>
+  	<init-param>
+  		<param-name>test</param-name>
+  		<param-value>testvalue</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>testServlet</servlet-name>
+  	<url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>XFireServlet</servlet-name>
+    <servlet-class>
+        org.codehaus.xfire.transport.http.XFireConfigurableServlet
+    </servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>XFireServlet</servlet-name>
+    <url-pattern>/servlet/XFireServlet/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>XFireServlet</servlet-name>
+    <url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+  
+  	<servlet>
+	  <servlet-name>ajaxServlet</servlet-name>
+	  <servlet-class>ajax.servlet.AjaxServlet</servlet-class>
+	</servlet>
+  
+    <servlet-mapping>
+		<servlet-name>ajaxServlet</servlet-name>
+		<url-pattern>/ajaxServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 初始化quartz开始 实例化scheduler、填充job、开始调度 -->
+	<context-param>
+		<param-name>config-file</param-name>
+		<param-value>quartz.properties</param-value>
+	</context-param>
+	<context-param>
+         <param-name>shutdown-on-unload</param-name>
+         <param-value>true</param-value>
+     </context-param>
+     <context-param>
+         <param-name>start-scheduler-on-load</param-name>
+         <param-value>true</param-value>
+     </context-param>
+     <listener>
+         <listener-class>
+             org.quartz.ee.servlet.QuartzInitializerListener
+         </listener-class>
+     </listener>
+     <!-- 初始化quartz结束 -->
+</web-app>

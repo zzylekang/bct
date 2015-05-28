@@ -1,0 +1,43 @@
+面向对象开发的特点决定了包的组织特点，开发中多多利用面向对象的特性。
+包结构的划分：
+com.zzy.study  学习包
+com.zzy.dev   开发包
+			comm 业务无关的类,是所有项目的根，定义接口等
+				constant 常量
+				util 工具类/helper类 对某个开源jar包、API使用的封装，降低使用难度
+				web 定义应用与web容器的接口
+				dao 定义应用与db的接口
+				
+com.zzy.tools 工具，如：打包工具
+com.zzy.${systemName}.base 项目基类
+				web
+				dao dao的具体实现，如jdbc、ibatis
+				biz
+				dataObject
+				component 组件 我所理解的组件是一个可以供开发者直接使用，并且可以为用户提供某种功能。应该包括UI、响应、处理
+-------------------将所有模块的代码混放----------------
+包组织说明：采用MVC模式
+
+com.zzy.${systemName} 系统名，比如交易系统
+			constant 常量
+			web 访问控制层
+				action
+				filter
+				servlet 在应用某些技术时，没有这个包。
+			biz 业务逻辑层 事务
+			dao 组装sql，如果是根据bean生成sql则放在base目录
+			dataObject/pojo：泛指一切数据对象
+				entity：实体
+				vo：视图，对应页面
+-------------------区分模块组织代码-----------------------------
+com.zzy.${systemName} 系统名，比如交易系统
+			模块名
+				web
+				dataObject/pojo：泛指一切数据对象
+					entity：实体
+					vo：视图，对应页面
+				dao
+				biz
+
+何时定义接口？
+当涉及到两个程序进行通信时，一定要定义接口，比如：java程序与数据库通信时就需要定义接口。

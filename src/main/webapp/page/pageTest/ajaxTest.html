@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ajax 测试！</title>
+<script type="text/javascript" src="../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript">
+	var xmlhttp;
+	
+	function ajaxTest(callbackfnc){
+		//alert("ajaxTest start");
+		if (window.XMLHttpRequest){
+		  /* code for IE7+, Firefox, Chrome, Opera, Safari*/
+		  	xmlhttp=new XMLHttpRequest();
+		}
+		else{
+		  // code for IE6, IE5
+		  	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		xmlhttp.onreadystatechange=callbackfnc;
+		xmlhttp.open("POST", "/bct/ajaxServlet", true);
+		//xmlhttp.open("get", "/ajaxServlet?name=" + document.getElementById("name").value, true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded;");
+		//xmlhttp.send();
+		xmlhttp.send("name=" + document.getElementById("name").value);
+		
+		//alert("ajaxTest end");
+	}
+	
+	function callbackfnc() {
+		//alert("callback");
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			
+			document.getElementById("message").innerHTML=xmlhttp.responseText;
+		}
+	}
+
+</script>
+
+</head>
+<body>
+	<div id="div1">
+		<form action="/javaWeb/ajaxServlet" id="regform" method="post">
+			输入用户名：<input type="text" id='name' name="name"/>
+			<input id="btn1" value='检查用户名' type="button" onclick="ajaxTest(callbackfnc)" />
+			<input id="btn1" value='提交' type="submit"/>
+		</form>
+		<div id="message">.....</div>
+	</div>
+</body>
+</html>

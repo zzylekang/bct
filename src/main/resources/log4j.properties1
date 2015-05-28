@@ -1,0 +1,33 @@
+# For the general syntax of property based configuration files see the
+# documenation of org.apache.log4j.PropertyConfigurator.
+
+# The root category uses the appender called A1. Since no priority is
+# specified, the root category assumes the default priority for root
+# which is DEBUG in log4j. The root category is the only category that
+# has a default priority. All other categories need not be assigned a
+# priority in which case they inherit their priority from the
+# hierarchy.
+
+log4j.rootLogger=, A1
+
+# A1 is set to be a LF5Appender which outputs to a swing
+# logging console. 
+  
+log4j.appender.A1=org.apache.log4j.ConsoleAppender
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+log4j.appender.A1.layout.ConversionPattern=%-4r %-5p %d{yyyy-MM-dd HH:mm:ssS} %c %m%n
+
+
+log4j.logger.test=DEBUG,test1
+log4j.appender.test1=org.apache.log4j.RollingFileAppender
+log4j.appender.test1.File=D:/log/log4j.log
+log4j.appender.test1.MaxFileSize=500KB
+log4j.appender.test1.layout=org.apache.log4j.PatternLayout
+log4j.appender.test1.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%p] - %m%n
+
+log4j.logger.common.file=DEBUG,commfile
+log4j.appender.commfile=org.apache.log4j.RollingFileAppender
+log4j.appender.commfile.File=D:/log/testcopy.log
+log4j.appender.commfile.MaxFileSize=500KB
+log4j.appender.commfile.layout=org.apache.log4j.PatternLayout
+log4j.appender.commfile.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%p] - %m%n

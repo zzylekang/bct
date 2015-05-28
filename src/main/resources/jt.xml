@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<quartz xmlns="http://www.opensymphony.com/quartz/JobSchedulingData"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.opensymphony.com/quartz/JobSchedulingData
+    http://www.opensymphony.com/quartz/xml/job_scheduling_data_1_5.xsd"
+	version="1.5">
+	
+	<job>
+		<job-detail>
+			<name>testo2m</name>
+			<group>Job</group>
+			<description>将TR_OFFER表数据从Oracle导入到MongoDB中</description>
+			<job-class>users.serviceImpl.JobBaoPan</job-class>
+		</job-detail>
+		<trigger>
+			<cron>
+				<name>testo2mt</name>
+				<group>Trigger</group>
+				<description>testo2m任务的触发器</description>
+				<job-name>testo2m</job-name>
+				<job-group>Job</job-group>
+				<cron-expression>0 0/2 * * * ?</cron-expression><!-- 每五分钟执行一次该任务 --><!--秒 分 小时 日期 月份 星期几 年(可选)  -->
+			</cron>
+		</trigger>
+	</job>
+
+</quartz>

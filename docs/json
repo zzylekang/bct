@@ -1,0 +1,20 @@
+{
+    "account": "无账号  account", 
+    "commcontentimg": [
+        {
+            "image": "http://test.pqtx.com:9015/jyd/upload/20131203/20131203164001_616.png"
+        }
+    ], 
+    "commoheadimage": "http://test.pqtx.com:9015/jyd/upload/20131202/20131202173848_913.png", 
+    "commoname": "hyc测试测试", 
+    "commonum": "g987654321", 
+    "commosynopsis": "没什么事", 
+    "content": "", 
+    "createtime": "2013-12-03 16:40:02", 
+    "id": "abbffb5cb5de4ce3b677cbe0313a7fd8", 
+    "infoid": "1ffe84f0bf87496eba86adc08e8f7de2", 
+    "sounds": "http://test.pqtx.com:9015/jyd/upload/20131203/20131203164002_695.amr", 
+    "trade": "石油", 
+    "type": "1", 
+    "uid": "1000000000755"
+}

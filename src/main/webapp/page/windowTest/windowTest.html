@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>浏览器对象&nbsp;&nbsp;Window对象测试</title>
+<script type="text/javascript">
+window.onload = function() {
+	alert(window.self.frames.length);
+	alert(frames[0]);//浏览器遇见<frame>、<iframe>会创建window对象
+	window.alert("ddkd");
+	var num = 2.383;
+	alert(num.toFixed(2));
+}
+function topWindow(refwindow){
+	alert(refwindow + ":" + "top window method!")
+}
+</script>
+</head>
+<frameset cols="25%,75%">
+   <frame src="frame_a.html">
+   <frame src="frame_b.html">
+    <noframes>
+    <body>
+    <p>您浏览的页面正在使用 frames.您目前使用的浏览器不支持 frames.</p>
+    </body>
+    </noframes>
+</frameset>
+</html>
